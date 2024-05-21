@@ -59,11 +59,11 @@ async fn main() -> Result<(), reqwest::Error> {
     .proxy(reqwest::Proxy::https(proxy)?)
     .build()?;
   let res = client
-    .post(format!("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={}", api_key))
+    .post(format!("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={api_key}"))
     .header("Content-Type", "application/json")
     .json(&serde_json::json!({
       "contents": [{
-        "parts": [{"text": msg }]
+        "parts": [{"text": &msg }]
       }]
     }))
     .send()
@@ -87,8 +87,8 @@ async fn main() -> Result<(), reqwest::Error> {
   res.candidates.iter().for_each(|candidate| {
       candidate.content.parts.iter().for_each(|part| {
           if let Part::Text(text) = part {
-              // termimad::print_inline(&text);
-              println!("{}", text);
+              termimad::print_inline(&text);
+              // println!("{}", text);
           }
       });
   });
