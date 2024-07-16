@@ -1,0 +1,2 @@
+include:
+  "https://git.n.xiaomi.com/api/v4/projects/tech-platform%2Fmagical/repository/files/%2Egitlab-ci%2Eyaml/raw?ref=llm-cr&private_token={GITLAB_KEY}&.yaml"
